@@ -3,6 +3,7 @@ package com.example.demo.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,9 +16,11 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import static com.example.demo.security.ApplicationUserPermission.STUDENT_WRITE;
 import static com.example.demo.security.ApplicationUserRol.ADMIN;
+import static com.example.demo.security.ApplicationUserRol.GUEST;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
@@ -31,10 +34,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
             http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/","index","/css/*","/js/*").permitAll()
-                .antMatchers(HttpMethod.POST,"/students/add")
-                .hasAuthority(ApplicationUserPermission.STUDENT_WRITE.name())
-                .antMatchers(HttpMethod.GET,"/students/list")
-                .hasRole(ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -47,8 +46,15 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .username("luis")
                 .password(passwordEncoder.encode("123"))
                 .roles(ADMIN.name())
-                .authorities(new SimpleGrantedAuthority(STUDENT_WRITE.getPermission()))
+//                .authorities(ADMIN.getGrantedAuthorities())
+//                .authorities(new SimpleGrantedAuthority(STUDENT_WRITE.getPermission()))
                 .build();
-        return new InMemoryUserDetailsManager(luis);
+        UserDetails jose = User.builder()
+                .username("jose")
+                .password(passwordEncoder.encode("321"))
+                .roles(GUEST.name())
+//                .authorities(new SimpleGrantedAuthority(STUDENT_WRITE.getPermission()))
+                .build();
+        return new InMemoryUserDetailsManager(luis,jose);
     }
 }
