@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -26,24 +27,23 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
 
+    @Autowired
     public ApplicationSecurityConfig(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-            http
-//                    .csrf().disable()
+        http
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/","index","/css/*","/js/*")
-                    .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
-                .httpBasic()
-                .and()
-                    .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+                .formLogin().loginPage("/login").permitAll()
+                .defaultSuccessUrl("/cursos", true);
     }
+
     @Override
     @Bean
     protected UserDetailsService userDetailsService() {
@@ -60,6 +60,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .roles(GUEST.name())
 //                .authorities(new SimpleGrantedAuthority(STUDENT_WRITE.getPermission()))
                 .build();
-        return new InMemoryUserDetailsManager(luis,jose);
+        return new InMemoryUserDetailsManager(luis, jose);
     }
 }
