@@ -33,6 +33,12 @@ public class StudentController {
         return this.studentService.addStudent(student);
     }
 
+    @GetMapping("insert")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public boolean insertStudent(){
+        return this.studentService.addStudent(new Student(7,"manolito"));
+    }
+
     @DeleteMapping("delete/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public boolean deleteando(@PathVariable("id") int idS){
