@@ -37,11 +37,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/students/*").hasRole(ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .defaultSuccessUrl("/cursos", true);
+
     }
 
     @Override
