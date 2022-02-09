@@ -47,8 +47,15 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .loginPage("/login").permitAll()
 //                .defaultSuccessUrl("/cursos", true)
                 .and()
-//                .rememberMe()
-                .rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(7))
+                .rememberMe()
+//                .rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(7))
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .clearAuthentication(true)
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID","remember-me")
+                .logoutSuccessUrl("/login");
         ;
 
     }
