@@ -12,8 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static com.example.demo.security.ApplicationUserRol.ADMIN;
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -45,25 +43,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/students/*").hasRole(ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin()
-//                .loginPage("/login").permitAll()
-//                .defaultSuccessUrl("/cursos", true)
-                .and()
-                .rememberMe().userDetailsService(this.userDetailsService())
-//                .rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(7))
-                .and()
-                .logout()
-                .logoutUrl("/logout")
-                .clearAuthentication(true)
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID","remember-me")
-                .logoutSuccessUrl("/login");
-        ;
-
+                .formLogin();
     }
 
 //    @Override

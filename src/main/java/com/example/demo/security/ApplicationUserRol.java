@@ -14,9 +14,11 @@ public enum ApplicationUserRol {
     ADMIN(Sets.newHashSet(STUDENT_READ,STUDENT_WRITE)),
     GUEST(Sets.newHashSet(STUDENT_READ));
     private final Set<ApplicationUserPermission> permissions;
+
     ApplicationUserRol(Set<ApplicationUserPermission> permissions) {
         this.permissions = permissions;
     }
+
     public Set<ApplicationUserPermission> getPermissions() {
         return permissions;
     }

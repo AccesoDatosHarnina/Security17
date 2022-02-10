@@ -18,9 +18,14 @@ public class MockApplicationUserDaoService implements ApplicationUserDAO{
 
     @Override
     public Optional<ApplicationUser> selectApplicationUserByName(String name) {
-        return getApplicationUser().stream()
-                .filter((applicationUser -> name.equals(applicationUser.getUsername())))
+        Optional<ApplicationUser> appuser = getApplicationUser().stream()
+                .filter((applicationUser ->{
+                    System.err.println(applicationUser.getUsername());
+                   return name.equals(applicationUser.getUsername());
+                }
+                ))
                 .findFirst();
+        return appuser;
     }
     private List<ApplicationUser> getApplicationUser(){
         List<ApplicationUser> applicationUsers = new ArrayList<>();
