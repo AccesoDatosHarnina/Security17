@@ -47,10 +47,7 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:9.0.56" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.56" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.15" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.15" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.15" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.15" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.15" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.springframework.boot:spring-boot-devtools:2.6.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.6.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.6.3" level="project" />
@@ -89,9 +86,12 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-security:2.6.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.15" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.6.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.6.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.6.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:5.6.1" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.6.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.15" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.15" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.15" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:28.1-jre" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:failureaccess:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
